@@ -1,0 +1,16 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use utf8;
+use feature qw(say);
+
+use Text::CSV_XS qw(csv);
+
+my $rows = csv(in => *STDIN);
+my $headers = shift @$rows;
+my $column_index = 0;
+foreach my $header (@$headers) {
+    say "$header,$_->[$column_index]" foreach (@$rows);
+    $column_index++;
+}
+
